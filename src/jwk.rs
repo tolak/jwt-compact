@@ -341,7 +341,7 @@ impl JsonWebKey<'_> {
         } else {
             Cow::Borrowed(self)
         };
-        D::digest(hashed_key.to_string().as_bytes())
+        D::digest(serde_json::to_string(&hashed_key).unwrap().as_bytes())
     }
 }
 
