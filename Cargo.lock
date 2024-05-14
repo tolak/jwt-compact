@@ -885,12 +885,12 @@ dependencies = [
  "lazy_static",
  "num-bigint-dig",
  "p256",
+ "pink-json",
  "rand",
  "rand_core",
  "rsa",
  "secp256k1",
  "serde",
- "serde_json",
  "sha2",
  "smallvec",
  "subtle",
@@ -1115,6 +1115,16 @@ name = "percent-encoding"
 version = "2.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9b2a4787296e9989611394c33f193f676704af1686e70b8f8033ab5ba9a35a94"
+
+[[package]]
+name = "pink-json"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c146010528d0b4f6a3d3255ef2a179e8ef25a1114dfb75542becf89def7c5232"
+dependencies = [
+ "ryu",
+ "serde",
+]
 
 [[package]]
 name = "pkcs1"

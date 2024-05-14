@@ -23,7 +23,7 @@ pub enum ParseError {
     /// Cannot decode base64.
     InvalidBase64Encoding,
     /// Token header cannot be parsed.
-    MalformedHeader(serde_json::Error),
+    MalformedHeader(serde_json::de::Error),
     /// [Content type][cty] mentioned in the token header is not supported.
     ///
     /// Supported content types are JSON (used by default) and CBOR (only if the `ciborium`
@@ -79,7 +79,7 @@ pub enum ValidationError {
     /// Token signature has failed verification.
     InvalidSignature,
     /// Token claims cannot be deserialized from JSON.
-    MalformedClaims(serde_json::Error),
+    MalformedClaims(serde_json::de::Error),
     /// Token claims cannot be deserialized from CBOR.
     #[cfg(feature = "ciborium")]
     #[cfg_attr(docsrs, doc(cfg(feature = "ciborium")))]
@@ -155,9 +155,9 @@ impl std::error::Error for ValidationError {
 #[non_exhaustive]
 pub enum CreationError {
     /// Token header cannot be serialized.
-    Header(serde_json::Error),
+    Header(serde_json::ser::Error),
     /// Token claims cannot be serialized into JSON.
-    Claims(serde_json::Error),
+    Claims(serde_json::ser::Error),
     /// Token claims cannot be serialized into CBOR.
     #[cfg(feature = "ciborium")]
     #[cfg_attr(docsrs, doc(cfg(feature = "ciborium")))]
