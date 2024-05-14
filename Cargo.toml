@@ -97,7 +97,7 @@ version-sync = "0.9"
 default = ["std", "clock"]
 # Enables `std`-specific functionality (such as error types implementing
 # the standard `Error` trait).
-std = ["anyhow/std", "serde_json/std"]
+std = ["anyhow/std", "serde/std", "serde_json/std"]
 # Enables getting the current time using `Utc::now()` from `chrono`.
 # Without it, some `TimeOptions` constructors, such as the `Default` impl,
 # are not available. It is still possible to create `TimeOptions`
