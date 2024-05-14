@@ -9,7 +9,9 @@ use rsa::{
 };
 use sha2::{Digest, Sha256, Sha384, Sha512};
 
-use core::{fmt, str::FromStr};
+use core::str::FromStr;
+#[cfg(feature = "std")]
+use core::fmt;
 
 use crate::{
     alg::{SecretBytes, StrongKey, WeakKeyError},
@@ -121,6 +123,7 @@ impl TryFrom<usize> for ModulusBits {
 #[cfg_attr(docsrs, doc(cfg(feature = "rsa")))]
 pub struct ModulusBitsError(());
 
+#[cfg(feature = "std")]
 impl fmt::Display for ModulusBitsError {
     fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
         formatter.write_str(
@@ -311,6 +314,7 @@ impl FromStr for Rsa {
 #[cfg_attr(docsrs, doc(cfg(feature = "rsa")))]
 pub struct RsaParseError(String);
 
+#[cfg(feature = "std")]
 impl fmt::Display for RsaParseError {
     fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(formatter, "Invalid RSA algorithm name: {}", self.0)

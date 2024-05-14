@@ -36,6 +36,7 @@
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 use sha2::digest::{Digest, Output};
 
+#[cfg(feature = "std")]
 use core::fmt;
 
 use crate::{
@@ -58,6 +59,7 @@ pub enum KeyType {
     KeyPair,
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for KeyType {
     fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
         formatter.write_str(match self {
@@ -107,6 +109,7 @@ pub enum JwkError {
     Custom(anyhow::Error),
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for JwkError {
     fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
@@ -342,6 +345,7 @@ impl JsonWebKey<'_> {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for JsonWebKey<'_> {
     // TODO: Not the most efficient approach
     fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {

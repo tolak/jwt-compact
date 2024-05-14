@@ -2,6 +2,8 @@
 
 #[cfg(feature = "ciborium")]
 use core::convert::Infallible;
+
+#[cfg(feature = "std")]
 use core::fmt;
 
 use crate::alloc::String;
@@ -33,6 +35,7 @@ pub enum ParseError {
     UnsupportedContentType(String),
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for ParseError {
     fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
@@ -102,6 +105,7 @@ pub enum Claim {
     NotBefore,
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for Claim {
     fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
         formatter.write_str(match self {
@@ -111,6 +115,7 @@ impl fmt::Display for Claim {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for ValidationError {
     fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
@@ -164,6 +169,7 @@ pub enum CreationError {
     CborClaims(CborSerError),
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for CreationError {
     fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {

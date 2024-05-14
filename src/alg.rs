@@ -1,6 +1,7 @@
 //! Implementations of JWT signing / verification algorithms. Also contains generic traits
 //! for signing and verifying keys.
 
+#[cfg(feature = "std")]
 use core::fmt;
 
 use crate::{alloc::Cow, Algorithm};
@@ -87,6 +88,7 @@ impl<T> AsRef<T> for StrongKey<T> {
 #[derive(Debug)]
 pub struct WeakKeyError<T>(pub T);
 
+#[cfg(feature = "std")]
 impl<T> fmt::Display for WeakKeyError<T> {
     fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
         formatter.write_str("Weak cryptographic key")
